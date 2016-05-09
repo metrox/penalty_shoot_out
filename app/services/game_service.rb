@@ -4,8 +4,8 @@ class GameService
   CORNER = [4,2]
   List = Struct.new(:id, :start_role, :current_role, :score, :winner)
 
-  def initialize(match = nil, list = ListSessionService)
-    self.match = match.present? ? match : build_new_match(list)
+  def initialize(id = nil, list = ListSessionService)
+    self.match = id.present? ? find_match(id, list) : build_new_match(list)
   end
 
   def shoot(coords, list = ListSessionService)
@@ -79,5 +79,9 @@ class GameService
     save_winner if match.score.size == 9
     switch_role
     list.update(match)
+  end
+
+  def find_match(id, list)
+    list.find(id)
   end
 end

@@ -9,18 +9,18 @@ module Api
         end
 
         def shoot
-          render json: GameService.new(params["match"].to_i).shoot([params["x"].to_i, params["y"].to_i]), status: 200
+          render json: GameService.new(params["match_id"].to_i).shoot([params["x"].to_i, params["y"].to_i]), status: 200
         end
 
         def save
-          render json: GameService.new(params["match"].to_i).save([params["x"].to_i, params["y"].to_i]), status: 200
+          render json: GameService.new(params["match_id"].to_i).save([params["x"].to_i, params["y"].to_i]), status: 200
         end
 
         private
 
         def params_present?
-          if params["match"].nil? || params["x"].nil? || params["y"].nil?
-            render json: { error: "Missing params [match, x, y]" }, status: 404
+          if params["match_id"].nil? || params["x"].nil? || params["y"].nil?
+            render json: { error: "Missing params [match_id, x, y]" }, status: 404
           end
         end
       end

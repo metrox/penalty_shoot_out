@@ -19,4 +19,8 @@ class ListSessionService
   def self.list
     @@list
   end
+
+  def self.find(id)
+    @@list.bsearch { |match| match.id == id }
+  end
 end
